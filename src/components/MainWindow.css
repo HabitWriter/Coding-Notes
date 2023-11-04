@@ -1,0 +1,47 @@
+html {
+    background-color: #d9d9d9;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+}
+
+
+.topics-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subtopics-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.topic-button {
+    background-color: white;
+    width: 80%;
+    padding: 4px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    padding-left: 16px;
+    
+}
+
+.subtopic-container {
+    background-color: white;
+    width: 80%;
+    padding: 4px;
+    margin-bottom: 16px;
+    border-radius: 10px;
+    padding-left: 16px;
+    
+}
+
+.icon {
+    width:20px;
+    height: 20px;
+    margin-right: 20px;
+}
