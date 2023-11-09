@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import './MainWindow.css';
+import TopicsTable from './TopicsTable';
+import SubtopicContainer from './SubtopicContainer';
+import SubtopicsTable from './SubtopicTable';
 
 export default function MainWindow() {
   
@@ -10,18 +13,7 @@ export default function MainWindow() {
       {/* This is where the header component will live */}
       <h1>Notes</h1> 
       {/* Now for the Topics Table */}
-      <div className="topics-table">
-        <div className="topic-button">
-          <h2>HTML</h2>
-        </div>
-        <div className="topic-button">
-          <h2>Javascript</h2>
-        </div>
-        <div className="topic-button">
-          <h2>CSS</h2>
-        </div>
-        <img src="src/images/plus.png" alt="back button" className='icon'/>
-      </div>
+      <TopicsTable />
 
       {/* This is what the showSubtopics display will be */}
 
@@ -31,19 +23,7 @@ export default function MainWindow() {
       </div>
 
       {/* Now for the Topics Table */}
-      <div className="subtopics-table">
-        <div className="subtopic-container">
-          <h2>h tags</h2>
-        </div>
-        <div className="subtopic-container">
-          <h2>divs</h2>
-        </div>
-        <div className="subtopic-container">
-          <h2>img</h2>
-        </div>
-        <img src="src/images/plus.png" alt="back button" className='icon'/>
-        
-      </div>
+      <SubtopicsTable />
 
     </div>
   );
