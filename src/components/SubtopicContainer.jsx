@@ -12,7 +12,7 @@ export default function SubtopicContainer (props) {
             
             <div className="open-subtopic-header">
                 <h2 onClick={() => setIsOpen(false)}>{props.subtopic}</h2>
-                <img src="src/images/delete.png" alt="back button" className='icon'/>
+                <img src="/images/delete.png" alt="back button" className='icon'/>
             </div>
             
             <hr />

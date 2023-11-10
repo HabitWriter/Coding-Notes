@@ -7,7 +7,7 @@ export default function TopicsTable (props) {
         <div className="topics-table">
             {props.topicData.map(function(data) {
                 return (
-                    <Link to={`/topic/${data.title}`} style={{ textDecoration: 'none' }}>
+                    <Link to={`/topic/${data.title}`} className='topic-button'>
                         <TopicButton topic={data.title}/>
                     </Link>
                 )
@@ -16,7 +16,7 @@ export default function TopicsTable (props) {
             {/* <TopicButton topic='HTML' />
             <TopicButton topic='Javascript' />
             <TopicButton topic='CSS' /> */}
-            <div><img src="src/images/plus.png" alt="add button" className='icon'/></div>
+            <div><img src="/images/plus.png" alt="add button" className='icon'/></div>
         </div>
     )
 }
