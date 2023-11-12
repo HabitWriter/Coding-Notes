@@ -2,6 +2,7 @@ import { useState } from 'react';
 import generateId from '../utils/idGenerator';
 import SubtopicContainer from './SubtopicContainer';
 import {useParams, Link, useNavigate} from 'react-router-dom';
+import axios from 'axios';
 
 export default function SubtopicsTable (props) {
 
@@ -22,6 +23,36 @@ return(
     
     <h1>{topicTitle}</h1>
     
+    <div onClick={async () => {
+            let editedTopic = prompt("Please edit your topic", `${topicTitle}`)
+            
+            console.log(editedTopic)
+            
+            const currentTopic = props.topics.find(t => t.title === topicTitle)
+
+            console.log(currentTopic);
+
+            const editedTopicObj = { "id": currentTopic.id, "title" : editedTopic }
+
+            try {
+                const { data } = await axios.put('/api/topics', editedTopicObj)
+                console.log(data) // log the response data
+
+                let newTopics = [...props.topics]
+
+                const index = newTopics.findIndex(topic => topic.id === editedTopicObj.id);
+
+                newTopics = newTopics.splice(index, 1, editedTopicObj)
+                
+                props.setTopics(newTopics)
+            } catch (error) {
+                console.error('Failed to edit topic', error)
+            }
+
+            }}>
+            <img src="/images/edit.png" alt="add button" className='icon'/>
+            </div>
+
     {/* This is the delete button container that deletes the TOPIC */}
     <div className="delete-container" onClick={() => {
         

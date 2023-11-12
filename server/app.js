@@ -4,6 +4,7 @@ import ViteExpress from 'vite-express';
 
 const app = express();
 const port = '8000';
+app.use(express.json())
 
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: false }));
@@ -39,34 +40,58 @@ app.get('/api/topics', (req,res) => {
 // Example response: { "id": 4, "title" : "React" }
 
 app.post('/api/topics', (req, res) => {
+    
     const newTopic = {
-      id: exampleTopicData.length + 1,
+      id: req.body.id,
       title: req.body.title
-    };
+    }
   
-    exampleTopicData.push(newTopic);
-  
-    res.json(newTopic);
+    exampleTopicData.push(newTopic)
+    
+    
+    res.json(newTopic)
   });
 
 // PUT topic data to change topic title
 // /api/topics/:id
-// Example request: { "id": 2, "title":"JS" }
+// Example request: { "id": 2, "title":"Javascript" }
 // Example response: { "id": 2, "title":"JS" }
 
-app.put('/api/topics/:id', (req, res) => {
-    const id = parseInt(req.params.id);
-    const newTitle = req.body.title;
+app.put('/api/topics/', (req, res) => {
+    const id = req.body.id
+    const newTitle = req.body.title
   
-    const topic = topics.find(t => t.id === id);
+    const topic = exampleTopicData.find(t => t.id === id)
   
-    topic.title = newTitle;
+    topic.title = newTitle
   
-    res.json(topic);
+    res.json(topic)
   });
 
 // DELETE topic and all subtopics from a given topic
 // api/topics/:id
+// example request: {"id" : 2, "title" : "JS"}
+// example response: {"id" : 2, "title" : "JS"}
+
+app.delete('/api/topics', (req, res) => {
+    const id = req.body.id
+  
+    const topicIndex = topics.findIndex(t => t.id === id)
+  
+    if (topicIndex === -1) {
+      return res.status(404).send('Topic not found')
+    }
+  
+    const deletedTopic = topics[topicIndex]
+  
+    // Remove the topic
+    exampleTopicData.splice(topicIndex, 1)
+  
+    // Remove all subtopics of the topic
+    exampleSubtopicData = exampleSubtopicData.filter(subtopic => subtopic.parentTopic !== deletedTopic.title)
+  
+    res.json(deletedTopic)
+  });
 
 // Get subtopic data
 // api/subtopics
