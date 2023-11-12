@@ -44,7 +44,7 @@ return(
         // console.log(data.parentTopic)
         
         if (data.parentTopic === topicTitle){
-            return(<SubtopicContainer key={data.id} subtopic={data.title} isOpen={false} setSubtopics={setSubtopics} subtopics = {subtopics}/>)
+            return(<SubtopicContainer key={data.id} subtopic={data.title} isOpen={false} setSubtopics={setSubtopics} subtopics = {subtopics} data = {data}/>)
         } 
 
     })

@@ -16,7 +16,13 @@ export default function SubtopicContainer (props) {
                 <div className="subtopic-delete" onClick={() => {
                     if (confirm('Are you sure you want to delete this subtopic?')) {
 
-                        // const newSubtopics = [...props.subtopics] 
+                        const newSubtopics = [...props.subtopics]
+                        
+                        const index = newSubtopics.findIndex((subtopic) => subtopic.id === props.data.id)
+
+                        newSubtopics.splice(index, 1)
+
+                        props.setSubtopics(newSubtopics)
 
                     }
 
