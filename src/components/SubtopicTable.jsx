@@ -45,6 +45,7 @@ return(
                 newTopics = newTopics.splice(index, 1, editedTopicObj)
                 
                 props.setTopics(newTopics)
+
             } catch (error) {
                 console.error('Failed to edit topic', error)
             }
@@ -54,7 +55,7 @@ return(
             </div>
 
     {/* This is the delete button container that deletes the TOPIC */}
-    <div className="delete-container" onClick={() => {
+    <div className="delete-container" onClick={async () => {
         
         if (confirm('Are you sure you want to delete this topic?')) {
             
@@ -63,7 +64,13 @@ return(
 
             const index = newTopics.findIndex((topic) => topic.title === topicTitle)
 
+            const currentTopic = newTopics[index]
+
+            console.log(currentTopic);
+
             newTopics.splice(index, 1)
+
+            await axios.delete('/api/topics', { data : {'id' : currentTopic.id }})
 
             props.setTopics(newTopics)
 

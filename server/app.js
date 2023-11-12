@@ -18,7 +18,7 @@ const exampleTopicData = [
  
   ]
 
-  const exampleSubtopicData = [
+  let exampleSubtopicData = [
     {"parentTopic": "HTML", "id": 0, "title" : "div", "code" : "", "notes" : "","links" : ""},
     {"parentTopic": "HTML", "id": 1, "title" : "headers", "code" : "", "notes" : "","links" : ""},
     {"parentTopic": "HTML", "id": 2, "title" : "href", "code" : "", "notes" : "","links" : ""},
@@ -70,19 +70,19 @@ app.put('/api/topics/', (req, res) => {
 
 // DELETE topic and all subtopics from a given topic
 // api/topics/:id
-// example request: {"id" : 2, "title" : "JS"}
+// example request: {"id" : 2}
 // example response: {"id" : 2, "title" : "JS"}
 
 app.delete('/api/topics', (req, res) => {
     const id = req.body.id
   
-    const topicIndex = topics.findIndex(t => t.id === id)
+    const topicIndex = exampleTopicData.findIndex(t => t.id === id)
   
     if (topicIndex === -1) {
       return res.status(404).send('Topic not found')
     }
   
-    const deletedTopic = topics[topicIndex]
+    const deletedTopic = exampleTopicData[topicIndex]
   
     // Remove the topic
     exampleTopicData.splice(topicIndex, 1)
