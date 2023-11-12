@@ -47,6 +47,10 @@ app.get('/api/topics', (req,res) => {
 // Get subtopic data
 // api/subtopics
 
+app.get('/api/subtopics', (req,res) => {
+    res.json(exampleSubtopicData)
+})
+
 // POST subtopic data to add a new subtopic
 // /api/subtopics
 
