@@ -13,10 +13,11 @@ export default function TopicsTable (props) {
                 )
             })}
 
-            {/* <TopicButton topic='HTML' />
-            <TopicButton topic='Javascript' />
-            <TopicButton topic='CSS' /> */}
-            <div><img src="/images/plus.png" alt="add button" className='icon'/></div>
+            <div onClick={() => {
+                let newTopic = prompt("Please enter your new topic")
+                console.log(newTopic);
+            }}>
+                <img src="/images/plus.png" alt="add button" className='icon'/></div>
         </div>
     )
 }

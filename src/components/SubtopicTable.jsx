@@ -14,14 +14,20 @@ const [subtopics, setSubtopics] = useState(props.subtopics)
 return(
 <>
 <div className="header">
+    
+    {/* This is the back button */}
     <Link to='/'>
         <img src="/images/back.png" alt="back button" className='icon'/>
     </Link>
+    
     <h1>{topicTitle}</h1>
+    
+    {/* This is the delete button container that deletes the TOPIC */}
     <div className="delete-container" onClick={() => {
         
         if (confirm('Are you sure you want to delete this topic?')) {
             
+            // Deleting the topic
             const newTopics = [...props.topics]
 
             const index = newTopics.findIndex((topic) => topic.title === topicTitle)
@@ -29,6 +35,17 @@ return(
             newTopics.splice(index, 1)
 
             props.setTopics(newTopics)
+
+            // Deleting the subtopics associated with topic
+            const subtopics = [...props.subtopics]
+
+            const newSubtopics = subtopics.filter((subtopic) => {
+                return subtopic.parentTopic !== topicTitle 
+            })
+
+            setSubtopics(newSubtopics);
+
+            console.log(newSubtopics);
             
             navigate("/");
         }
@@ -37,6 +54,8 @@ return(
         <img src="/images/delete.png" alt="delete button" className='icon'/>
     </div>
 </div>
+
+{/* This is the subtopics table */}
 
 <div className="subtopics-table">
     {subtopics.map(function(data) {
