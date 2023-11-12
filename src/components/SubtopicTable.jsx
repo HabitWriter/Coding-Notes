@@ -9,7 +9,7 @@ const navigate = useNavigate();
 
 let { topicTitle } = useParams();
 
-console.log(topicTitle);
+const [subtopics, setSubtopics] = useState(props.subtopics)
 
 return(
 <>
@@ -19,7 +19,17 @@ return(
     </Link>
     <h1>{topicTitle}</h1>
     <div className="delete-container" onClick={() => {
+        
         if (confirm('Are you sure you want to delete this topic?')) {
+            
+            const newTopics = [...props.topics]
+
+            const index = newTopics.findIndex((topic) => topic.title === topicTitle)
+
+            newTopics.splice(index, 1)
+
+            props.setTopics(newTopics)
+            
             navigate("/");
         }
         
@@ -29,12 +39,12 @@ return(
 </div>
 
 <div className="subtopics-table">
-    {props.subtopicData.map(function(data) {
+    {subtopics.map(function(data) {
         
-        console.log(data.parentTopic)
+        // console.log(data.parentTopic)
         
         if (data.parentTopic === topicTitle){
-            return(<SubtopicContainer subtopic={data.title} isOpen={false}/>)
+            return(<SubtopicContainer key={data.id} subtopic={data.title} isOpen={false} setSubtopics={setSubtopics} subtopics = {subtopics}/>)
         } 
 
     })

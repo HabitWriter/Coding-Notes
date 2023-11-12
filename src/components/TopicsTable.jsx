@@ -7,7 +7,7 @@ export default function TopicsTable (props) {
         <div className="topics-table">
             {props.topicData.map(function(data) {
                 return (
-                    <Link to={`/topic/${data.title}`} className='topic-button'>
+                    <Link to={`/topic/${data.title}`} className='topic-button' key={data.id}>
                         <TopicButton topic={data.title}/>
                     </Link>
                 )

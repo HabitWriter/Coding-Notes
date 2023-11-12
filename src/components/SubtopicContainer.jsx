@@ -12,7 +12,20 @@ export default function SubtopicContainer (props) {
             
             <div className="open-subtopic-header">
                 <h2 onClick={() => setIsOpen(false)}>{props.subtopic}</h2>
+                
+                <div className="subtopic-delete" onClick={() => {
+                    if (confirm('Are you sure you want to delete this subtopic?')) {
+
+                        // const newSubtopics = [...props.subtopics] 
+
+                    }
+
+                    
+                }}>
+
                 <img src="/images/delete.png" alt="back button" className='icon'/>
+                </div>
+
             </div>
             
             <hr />
