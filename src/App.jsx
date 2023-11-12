@@ -42,7 +42,7 @@ function App({ initialTopics }) {
   return (
   <Routes>
     <Route path='/' element = {<MainWindow topicData={topics}/>} />
-    <Route path='/topic/:topicTitle' element = {<SubtopicsTable subtopics = {subtopics} topics = {topics} setTopics = {setTopics}/>} />
+    <Route path='/topic/:topicTitle' element = {<SubtopicsTable subtopics = {subtopics} setSubtopics = {setSubtopics} topics = {topics} setTopics = {setTopics}/>} />
   </Routes>
   )
 }

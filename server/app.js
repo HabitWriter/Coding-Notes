@@ -35,11 +35,35 @@ app.get('/api/topics', (req,res) => {
 
 // POST topic data to add a new topic
 // /api/topics
-// Example request: {}
+// Example request: { "title":"React" }
+// Example response: { "id": 4, "title" : "React" }
+
+app.post('/api/topics', (req, res) => {
+    const newTopic = {
+      id: exampleTopicData.length + 1,
+      title: req.body.title
+    };
+  
+    exampleTopicData.push(newTopic);
+  
+    res.json(newTopic);
+  });
 
 // PUT topic data to change topic title
 // /api/topics/:id
-// Example request
+// Example request: { "id": 2, "title":"JS" }
+// Example response: { "id": 2, "title":"JS" }
+
+app.put('/api/topics/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const newTitle = req.body.title;
+  
+    const topic = topics.find(t => t.id === id);
+  
+    topic.title = newTitle;
+  
+    res.json(topic);
+  });
 
 // DELETE topic and all subtopics from a given topic
 // api/topics/:id

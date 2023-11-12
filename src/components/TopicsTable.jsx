@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import TopicButton from './TopicButton';
 import { Link } from 'react-router-dom';
+import generateId from '../utils/idGenerator';
 
 export default function TopicsTable (props) {
     return(
@@ -15,7 +16,15 @@ export default function TopicsTable (props) {
 
             <div onClick={() => {
                 let newTopic = prompt("Please enter your new topic")
-                console.log(newTopic);
+                
+                let newTopics = [...props.topicData]
+
+                newTopics.push({ "id" : generateId(), "title" : newTopic})
+
+                console.log(newTopics);
+                console.log(props.topicData);
+
+                props.setTopicData(newTopics);
             }}>
                 <img src="/images/plus.png" alt="add button" className='icon'/></div>
         </div>
