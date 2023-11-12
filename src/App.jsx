@@ -5,12 +5,12 @@ import SubtopicsTable from './components/SubtopicTable.jsx';
 
 const TEST_DATA = [];
 
-function App() {
+function App({ initialTopics }) {
 
   const exampleTopicData = [
     { "id": 0, "title" : 'HTML'},
     { "id": 1, "title" : 'Javascript'},
-    { "id": 2, "title" : 'CSS'},
+    { "id": 2, "title" : 'Conner'},
  
   ]
 
@@ -26,7 +26,7 @@ function App() {
 
   return (
   <Routes>
-    <Route path='/' element = {<MainWindow topicData={exampleTopicData}/>} />
+    <Route path='/' element = {<MainWindow topicData={initialTopics}/>} />
     <Route path='/topic/:topicTitle' element = {<SubtopicsTable subtopicData = {exampleSubtopicData}/>} />
   </Routes>
   )

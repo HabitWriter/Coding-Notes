@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import TopicButton from './TopicButton';
+
 import SubtopicContainer from './SubtopicContainer';
-import {useParams, Link} from 'react-router-dom';
+import {useParams, Link, useNavigate} from 'react-router-dom';
 
 export default function SubtopicsTable (props) {
+
+const navigate = useNavigate();
 
 let { topicTitle } = useParams();
 
@@ -13,20 +15,30 @@ return(
 <>
 <div className="header">
     <Link to='/'>
-    <img src="/images/back.png" alt="back button" className='icon'/>
+        <img src="/images/back.png" alt="back button" className='icon'/>
     </Link>
     <h1>{topicTitle}</h1>
-  </div>
+    <div className="delete-container" onClick={() => {
+        if (confirm('Are you sure you want to delete this topic?')) {
+            navigate("/");
+        }
+        
+    }}>
+        <img src="/images/delete.png" alt="delete button" className='icon'/>
+    </div>
+</div>
 
 <div className="subtopics-table">
     {props.subtopicData.map(function(data) {
+        
         console.log(data.parentTopic)
+        
         if (data.parentTopic === topicTitle){
-            return(<SubtopicContainer subtopic={data.title} isOpen='true'/>)
+            return(<SubtopicContainer subtopic={data.title} isOpen={false}/>)
         } 
 
     })
-    // <SubtopicContainer subtopic='h tags' isOpen='true'/>
+    
     }
         <div><img src="/images/plus.png" alt="add button" className='icon'/></div>
 </div>

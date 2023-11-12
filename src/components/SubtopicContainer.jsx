@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 export default function SubtopicContainer (props) {
     
-    const [isOpen, setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(props.isOpen)
 
     if (isOpen) { 
     
