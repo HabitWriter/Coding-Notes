@@ -1,4 +1,4 @@
-import { forceUpdate, useState } from 'react';
+import { useState } from 'react';
 import generateId from '../utils/idGenerator';
 import SubtopicContainer from './SubtopicContainer';
 import {useParams, Link, useNavigate} from 'react-router-dom';
@@ -86,9 +86,9 @@ return(
                     })
 
                 console.log(newSubtopics);
-
+                
                 props.setSubtopics(newSubtopics);
-                forceUpdate();
+                
             }}
         
         >
