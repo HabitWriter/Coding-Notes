@@ -1,5 +1,5 @@
-import { useState } from 'react';
-
+import { forceUpdate, useState } from 'react';
+import generateId from '../utils/idGenerator';
 import SubtopicContainer from './SubtopicContainer';
 import {useParams, Link, useNavigate} from 'react-router-dom';
 
@@ -69,7 +69,30 @@ return(
     })
     
     }
-        <div><img src="/images/plus.png" alt="add button" className='icon'/></div>
-</div>
+    <div onClick={() => {
+                let newSubtopic = prompt("Please enter your new subtopic")
+                
+                let newSubtopics = [...props.subtopics]
+
+                newSubtopics.push({ 
+                    
+                    "parentTopic" : topicTitle,
+                    "id" : generateId(),
+                    "title" : newSubtopic,
+                    "code" : "",
+                    "notes" : "",
+                    "links" : "",
+                                     
+                    })
+
+                console.log(newSubtopics);
+
+                props.setSubtopics(newSubtopics);
+                forceUpdate();
+            }}
+        
+        >
+            <img src="/images/plus.png" alt="add button" className='icon'/></div>
+    </div>
 </>
 )}
